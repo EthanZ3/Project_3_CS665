@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>{{ "Edit Guest" if guest else "Add Guest" }}</h1>
+        <p class="text-muted">Enter guest contact information.</p>
+    </div>
+</div>
+
+<div class="form-card">
+    <form method="POST">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">First Name</label>
+                <input 
+                    type="text" 
+                    name="firstName" 
+                    class="form-control" 
+                    value="{{ guest.firstName if guest else '' }}" 
+                    required
+                >
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Last Name</label>
+                <input 
+                    type="text" 
+                    name="lastName" 
+                    class="form-control" 
+                    value="{{ guest.lastName if guest else '' }}" 
+                    required
+                >
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Phone Number</label>
+                <input 
+                    type="text" 
+                    name="phoneNumber" 
+                    class="form-control" 
+                    value="{{ guest.phoneNumber if guest else '' }}"
+                >
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    class="form-control" 
+                    value="{{ guest.email if guest else '' }}"
+                >
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('list_guests') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+            <button type="submit" class="btn btn-primary">
+                Save Guest
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

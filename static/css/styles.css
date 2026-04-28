@@ -1,0 +1,235 @@
+:root {
+    --admin-bg: #f4f6f9;
+    --admin-card: #ffffff;
+    --admin-dark: #172033;
+    --admin-primary: #2457c5;
+    --admin-primary-dark: #1d4499;
+    --admin-border: #dce1ea;
+    --admin-muted: #687386;
+    --admin-danger: #c93232;
+    --admin-success: #2e8b57;
+    --admin-warning: #c9861a;
+    --admin-radius: 14px;
+}
+
+body {
+    background: var(--admin-bg);
+    color: var(--admin-dark);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.admin-navbar {
+    background: linear-gradient(90deg, #172033, #24324f);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+}
+
+.navbar-brand {
+    letter-spacing: 0.4px;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.nav-link:hover {
+    color: #ffffff !important;
+}
+
+.page-wrapper {
+    padding: 28px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.page-header p {
+    margin: 4px 0 0 0;
+}
+
+.flash-wrapper {
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+    padding: 22px;
+    box-shadow: 0 6px 16px rgba(20, 30, 50, 0.06);
+}
+
+.stat-card span {
+    color: var(--admin-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card h2 {
+    margin: 10px 0 0 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.content-card,
+.form-card {
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+    padding: 22px;
+    box-shadow: 0 6px 16px rgba(20, 30, 50, 0.06);
+}
+
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.card-header-row h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.admin-table {
+    margin-bottom: 0;
+}
+
+.admin-table thead th {
+    color: var(--admin-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-table tbody td {
+    vertical-align: middle;
+    border-color: #edf0f5;
+}
+
+.empty-row {
+    text-align: center;
+    color: var(--admin-muted);
+    padding: 28px !important;
+}
+
+.inline-form {
+    display: inline-block;
+    margin-left: 6px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--admin-dark);
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border-color: var(--admin-border);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 0.2rem rgba(36, 87, 197, 0.15);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 28px;
+}
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--admin-primary);
+    border-color: var(--admin-primary);
+}
+
+.btn-primary:hover {
+    background: var(--admin-primary-dark);
+    border-color: var(--admin-primary-dark);
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    background: #e9edf5;
+    color: var(--admin-dark);
+}
+
+.status-available {
+    background: #e5f7ed;
+    color: var(--admin-success);
+}
+
+.status-occupied {
+    background: #fdecec;
+    color: var(--admin-danger);
+}
+
+.status-cleaning {
+    background: #fff3d9;
+    color: var(--admin-warning);
+}
+
+.status-reserved {
+    background: #eaf0ff;
+    color: var(--admin-primary);
+}
+
+.calculation-note {
+    background: #eef4ff;
+    border: 1px solid #cfddff;
+    color: #2f4b83;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .page-wrapper {
+        padding: 18px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .content-card {
+        overflow-x: auto;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}

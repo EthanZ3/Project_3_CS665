@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Guests</h1>
+        <p class="text-muted">View, add, edit, and remove hotel guests.</p>
+    </div>
+
+    <a href="{{ url_for('create_guest') }}" class="btn btn-primary">
+        Add Guest
+    </a>
+</div>
+
+<div class="content-card">
+    <table class="table admin-table align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Guest Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Created</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guest in guests %}
+            <tr>
+                <td>{{ guest.guestID }}</td>
+                <td>{{ guest.firstName }} {{ guest.lastName }}</td>
+                <td>{{ guest.phoneNumber or "N/A" }}</td>
+                <td>{{ guest.email or "N/A" }}</td>
+                <td>{{ guest.createdAt }}</td>
+                <td class="text-end">
+                    <a 
+                        href="{{ url_for('edit_guest', guest_id=guest.guestID) }}" 
+                        class="btn btn-sm btn-outline-primary"
+                    >
+                        Edit
+                    </a>
+
+                    <form 
+                        action="{{ url_for('delete_guest', guest_id=guest.guestID) }}" 
+                        method="POST" 
+                        class="inline-form"
+                    >
+                        <button 
+                            type="submit" 
+                            class="btn btn-sm btn-outline-danger"
+                            onclick="return confirm('Delete this guest?');"
+                        >
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="empty-row">No guests found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

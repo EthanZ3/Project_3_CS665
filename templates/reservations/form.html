@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>{{ "Edit Reservation" if reservation else "Add Reservation" }}</h1>
+        <p class="text-muted">
+            Select a guest, room, employee, and reservation dates.
+        </p>
+    </div>
+</div>
+
+<div class="form-card">
+    <form method="POST">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Guest</label>
+                <select name="guestID" class="form-select" required>
+                    <option value="">Select guest</option>
+                    {% for guest in guests %}
+                    <option 
+                        value="{{ guest.guestID }}"
+                        {% if reservation and reservation.guestID == guest.guestID %}selected{% endif %}
+                    >
+                        {{ guest.firstName }} {{ guest.lastName }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Room</label>
+                <select name="roomID" class="form-select" required>
+                    <option value="">Select room</option>
+                    {% for room in rooms %}
+                    <option 
+                        value="{{ room.roomID }}"
+                        {% if reservation and reservation.roomID == room.roomID %}selected{% endif %}
+                    >
+                        Room {{ room.roomNumber }} - {{ room.typeName }} - ${{ "%.2f"|format(room.basePrice) }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Employee</label>
+                <select name="employeeID" class="form-select">
+                    <option value="">No employee assigned</option>
+                    {% for employee in employees %}
+                    <option 
+                        value="{{ employee.employeeID }}"
+                        {% if reservation and reservation.employeeID == employee.employeeID %}selected{% endif %}
+                    >
+                        {{ employee.firstName }} {{ employee.lastName }} - {{ employee.jobTitle }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Check-In Date</label>
+                <input 
+                    type="date" 
+                    name="checkInDate" 
+                    class="form-control"
+                    value="{{ reservation.checkInDate if reservation else '' }}"
+                    required
+                >
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Check-Out Date</label>
+                <input 
+                    type="date" 
+                    name="checkOutDate" 
+                    class="form-control"
+                    value="{{ reservation.checkOutDate if reservation else '' }}"
+                    required
+                >
+            </div>
+        </div>
+
+        <div class="calculation-note mt-4">
+            Number of nights and final cost are calculated automatically by the database view.
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('list_reservations') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+            <button type="submit" class="btn btn-primary">
+                Save Reservation
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

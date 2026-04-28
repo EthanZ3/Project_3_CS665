@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Reservations</h1>
+        <p class="text-muted">Manage guest bookings and view calculated reservation costs.</p>
+    </div>
+
+    <a href="{{ url_for('create_reservation') }}" class="btn btn-primary">
+        Add Reservation
+    </a>
+</div>
+
+<div class="content-card">
+    <table class="table admin-table align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Guest</th>
+                <th>Room</th>
+                <th>Room Type</th>
+                <th>Employee</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>Nights</th>
+                <th>Final Cost</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.reservationID }}</td>
+                <td>{{ reservation.guestName }}</td>
+                <td>{{ reservation.roomNumber }}</td>
+                <td>{{ reservation.roomType }}</td>
+                <td>{{ reservation.employeeName or "N/A" }}</td>
+                <td>{{ reservation.checkInDate }}</td>
+                <td>{{ reservation.checkOutDate }}</td>
+                <td>{{ reservation.numberOfNights }}</td>
+                <td>${{ "%.2f"|format(reservation.finalCost or 0) }}</td>
+                <td class="text-end">
+                    <a 
+                        href="{{ url_for('edit_reservation', reservation_id=reservation.reservationID) }}" 
+                        class="btn btn-sm btn-outline-primary"
+                    >
+                        Edit
+                    </a>
+
+                    <form 
+                        action="{{ url_for('delete_reservation', reservation_id=reservation.reservationID) }}" 
+                        method="POST" 
+                        class="inline-form"
+                    >
+                        <button 
+                            type="submit" 
+                            class="btn btn-sm btn-outline-danger"
+                            onclick="return confirm('Delete this reservation?');"
+                        >
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="10" class="empty-row">No reservations found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

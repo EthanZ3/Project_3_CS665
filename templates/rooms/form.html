@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>{{ "Edit Room" if room else "Add Room" }}</h1>
+        <p class="text-muted">Assign a room number, type, status, and floor.</p>
+    </div>
+</div>
+
+<div class="form-card">
+    <form method="POST">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Room Number</label>
+                <input 
+                    type="text" 
+                    name="roomNumber" 
+                    class="form-control" 
+                    value="{{ room.roomNumber if room else '' }}" 
+                    required
+                >
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Room Type</label>
+                <select name="roomTypeID" class="form-select" required>
+                    <option value="">Select room type</option>
+                    {% for type in room_types %}
+                    <option 
+                        value="{{ type.roomTypeID }}"
+                        {% if room and room.roomTypeID == type.roomTypeID %}selected{% endif %}
+                    >
+                        {{ type.typeName }} - ${{ "%.2f"|format(type.basePrice) }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Room Status</label>
+                <select name="roomStatusID" class="form-select" required>
+                    <option value="">Select status</option>
+                    {% for status in room_statuses %}
+                    <option 
+                        value="{{ status.roomStatusID }}"
+                        {% if room and room.roomStatusID == status.roomStatusID %}selected{% endif %}
+                    >
+                        {{ status.statusName }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Floor Number</label>
+                <input 
+                    type="number" 
+                    name="floorNumber" 
+                    class="form-control" 
+                    value="{{ room.floorNumber if room else '' }}"
+                    min="0"
+                >
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('list_rooms') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+            <button type="submit" class="btn btn-primary">
+                Save Room
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

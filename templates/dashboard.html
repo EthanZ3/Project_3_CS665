@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Dashboard</h1>
+        <p class="text-muted">Overview of hotel activity and reservation performance.</p>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Total Guests</span>
+            <h2>{{ stats.total_guests }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Total Rooms</span>
+            <h2>{{ stats.total_rooms }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Total Reservations</span>
+            <h2>{{ stats.total_reservations }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Total Revenue</span>
+            <h2>${{ "%.2f"|format(stats.total_revenue or 0) }}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-2">
+    <div class="col-md-6">
+        <div class="content-card">
+            <div class="card-header-row">
+                <h3>Room Status Summary</h3>
+            </div>
+
+            <table class="table admin-table">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Rooms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in room_status_summary %}
+                    <tr>
+                        <td>{{ row.statusName }}</td>
+                        <td>{{ row.roomCount }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="2" class="empty-row">No room status data available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="content-card">
+            <div class="card-header-row">
+                <h3>Recent Reservations</h3>
+                <a href="{{ url_for('list_reservations') }}" class="btn btn-sm btn-outline-primary">
+                    View All
+                </a>
+            </div>
+
+            <table class="table admin-table">
+                <thead>
+                    <tr>
+                        <th>Guest</th>
+                        <th>Room</th>
+                        <th>Dates</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in recent_reservations %}
+                    <tr>
+                        <td>{{ reservation.guestName }}</td>
+                        <td>{{ reservation.roomNumber }}</td>
+                        <td>{{ reservation.checkInDate }} - {{ reservation.checkOutDate }}</td>
+                        <td>${{ "%.2f"|format(reservation.finalCost or 0) }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="empty-row">No reservations yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
