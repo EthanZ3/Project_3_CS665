@@ -1,5 +1,6 @@
 Hotel Reservation Management System
 
+
 The Hotel Reservation Management System is a full-stack Flask web application designed for hotel administrators. The application allows an admin user to manage guests, rooms, room types, and reservations through a browser-based interface connected to a local MySQL database.
 
 The system uses a normalized relational database structure and supports common hotel management tasks such as adding guests, updating room information, creating reservations, viewing reservation details, and displaying dashboard summaries. The project demonstrates database normalization, multi-table CRUD operations, relationship management, server-side validation, transaction logic, and SQL aggregate queries.
