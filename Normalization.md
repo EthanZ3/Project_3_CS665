@@ -86,8 +86,9 @@ Summary steps:
 
 - Employees -> employeeID PK, firstName, lastName, jobTitle, hireDate, createdAt
 
-- Reservations -> reservationID PK, guestID FK, roomID FK, employeeID FK, checkInDate, checkOutDate, numberOfNights, finalCost, createdAt
+- Reservations -> reservationID PK, guestID FK, roomID FK, employeeID FK, checkInDate, checkOutDate, numberOfNights, createdAt
 
+- ReservationDetails View -> reservationID, guestID, guestName, roomID, roomNumber, roomTypeID, roomType, basePrice, employeeID, employeeName, checkInDate, checkOutDate, numberOfNights, finalCost, createdAt
 - changed the name of totalAmount to finalCost to be more clear.
 
 Final Schema:

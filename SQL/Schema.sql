@@ -133,6 +133,3 @@ JOIN RoomTypes rt
     ON rm.roomTypeID = rt.roomTypeID
 LEFT JOIN Employees e
     ON res.employeeID = e.employeeID;
-
-
-SELECT * FROM ReservationDetails;

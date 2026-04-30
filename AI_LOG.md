@@ -19,6 +19,11 @@
 4:
 - chatgpt
 - Here is my app.py, config.py, and models.py. Please expand on them and let me know how to improve them for this project, provide me with the code and proper linkage and explain what's happening in these files if you edit them
+- Returned a lot of code related to how flask operates and gave me a great baseline to improve upon
 - Greatly expanded on my code and fleshed out how they operate, I implemented it as best I could and tested their usage
 
 5:
+- chatgpt
+- Below is a basic README.MD i have provided, please make it look professional and include anything that I may have forgotten in the setup process
+- Wrote a detailed and professional README including the project features that were included in the project pdf and where they can be found in the project
+- Verified the information inside the README that the ai provided and edited it to be more in line with a readable style
