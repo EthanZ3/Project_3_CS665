@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>{{ guest.firstName }} {{ guest.lastName }}</h1>
+        <p class="text-muted">Guest details and reservation history.</p>
+    </div>
+
+    <a href="{{ url_for('edit_guest', guest_id=guest.guestID) }}" class="btn btn-primary">
+        Edit Guest
+    </a>
+</div>
+
+<div class="content-card mb-4">
+    <h3>Guest Information</h3>
+
+    <table class="table admin-table">
+        <tr>
+            <th>ID</th>
+            <td>{{ guest.guestID }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ guest.email or "N/A" }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ guest.phoneNumber or "N/A" }}</td>
+        </tr>
+        <tr>
+            <th>Created</th>
+            <td>{{ guest.createdAt }}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="content-card">
+    <div class="card-header-row">
+        <h3>Reservations for this Guest</h3>
+        <a href="{{ url_for('create_reservation') }}" class="btn btn-sm btn-outline-primary">
+            Add Reservation
+        </a>
+    </div>
+
+    <table class="table admin-table align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Room</th>
+                <th>Room Type</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>Nights</th>
+                <th>Final Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('show_reservation', reservation_id=reservation.reservationID) }}">
+                        {{ reservation.reservationID }}
+                    </a>
+                </td>
+                <td>{{ reservation.roomNumber }}</td>
+                <td>{{ reservation.roomType }}</td>
+                <td>{{ reservation.checkInDate }}</td>
+                <td>{{ reservation.checkOutDate }}</td>
+                <td>{{ reservation.numberOfNights }}</td>
+                <td>${{ "%.2f"|format(reservation.finalCost or 0) }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" class="empty-row">This guest has no reservations.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

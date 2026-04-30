@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>{{ "Edit Room Type" if room_type else "Add Room Type" }}</h1>
+        <p class="text-muted">Enter room type pricing and occupancy information.</p>
+    </div>
+</div>
+
+<div class="form-card">
+    <form method="POST">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Type Name</label>
+                <input 
+                    type="text" 
+                    name="typeName" 
+                    class="form-control" 
+                    value="{{ room_type.typeName if room_type else '' }}" 
+                    required
+                >
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Max Occupancy</label>
+                <input 
+                    type="number" 
+                    name="maxOccupancy" 
+                    class="form-control" 
+                    value="{{ room_type.maxOccupancy if room_type else '' }}"
+                    min="1"
+                    required
+                >
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Base Price</label>
+                <input 
+                    type="number" 
+                    step="0.01"
+                    name="basePrice" 
+                    class="form-control" 
+                    value="{{ room_type.basePrice if room_type else '' }}"
+                    min="0"
+                    required
+                >
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('list_room_types') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+            <button type="submit" class="btn btn-primary">
+                Save Room Type
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

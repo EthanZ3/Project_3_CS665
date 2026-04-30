@@ -30,7 +30,11 @@
             {% for room in rooms %}
             <tr>
                 <td>{{ room.roomID }}</td>
-                <td>{{ room.roomNumber }}</td>
+                <td>
+                    <a href="{{ url_for('show_room', room_id=room.roomID) }}">
+                        {{ room.roomNumber }}
+                    </a>
+                </td>
                 <td>{{ room.typeName }}</td>
                 <td>
                     <span class="status-pill status-{{ room.statusName|lower }}">

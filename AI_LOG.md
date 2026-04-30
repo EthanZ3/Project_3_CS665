@@ -9,3 +9,16 @@
 - How can we easily set up flask so that we can actually get a webpage open
 - Gave me a simple app.py, along with instructions on how to pip install it
 - no need the change or alter any code in app.py, still need to create the webpages for guests, resevations, and rooms though
+
+3:
+- chatgpt
+- generate a list of requirements for me
+- gave me the list of requirements and their versions
+- double checked the versions
+
+4:
+- chatgpt
+- Here is my app.py, config.py, and models.py. Please expand on them and let me know how to improve them for this project, provide me with the code and proper linkage and explain what's happening in these files if you edit them
+- Greatly expanded on my code and fleshed out how they operate, I implemented it as best I could and tested their usage
+
+5:

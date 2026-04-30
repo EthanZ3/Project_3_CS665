@@ -1,6 +1,5 @@
 -- Hotel Reservation Management System
 -- Final 3NF Schema
--- Trigger-free version
 
 CREATE DATABASE IF NOT EXISTS hotel_reservation_db;
 USE hotel_reservation_db;

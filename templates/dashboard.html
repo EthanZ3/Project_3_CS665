@@ -37,6 +37,34 @@
             <h2>${{ "%.2f"|format(stats.total_revenue or 0) }}</h2>
         </div>
     </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Available Rooms</span>
+            <h2>{{ stats.available_rooms }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Occupied / Reserved</span>
+            <h2>{{ stats.busy_rooms }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Avg. Reservation</span>
+            <h2>${{ "%.2f"|format(stats.avg_reservation_value or 0) }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Avg. Stay Length</span>
+            <h2>{{ "%.1f"|format(stats.avg_stay_length or 0) }}</h2>
+        </div>
+    </div>
 </div>
 
 <div class="row g-4 mt-2">
@@ -72,6 +100,39 @@
     <div class="col-md-6">
         <div class="content-card">
             <div class="card-header-row">
+                <h3>Revenue by Room Type</h3>
+            </div>
+
+            <table class="table admin-table">
+                <thead>
+                    <tr>
+                        <th>Room Type</th>
+                        <th>Reservations</th>
+                        <th>Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in room_type_summary %}
+                    <tr>
+                        <td>{{ row.roomType }}</td>
+                        <td>{{ row.reservationCount }}</td>
+                        <td>${{ "%.2f"|format(row.revenue or 0) }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3" class="empty-row">No room type revenue data available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-2">
+    <div class="col-12">
+        <div class="content-card">
+            <div class="card-header-row">
                 <h3>Recent Reservations</h3>
                 <a href="{{ url_for('list_reservations') }}" class="btn btn-sm btn-outline-primary">
                     View All
@@ -84,6 +145,7 @@
                         <th>Guest</th>
                         <th>Room</th>
                         <th>Dates</th>
+                        <th>Nights</th>
                         <th>Cost</th>
                     </tr>
                 </thead>
@@ -93,11 +155,12 @@
                         <td>{{ reservation.guestName }}</td>
                         <td>{{ reservation.roomNumber }}</td>
                         <td>{{ reservation.checkInDate }} - {{ reservation.checkOutDate }}</td>
+                        <td>{{ reservation.numberOfNights }}</td>
                         <td>${{ "%.2f"|format(reservation.finalCost or 0) }}</td>
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="4" class="empty-row">No reservations yet.</td>
+                        <td colspan="5" class="empty-row">No reservations yet.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -32,7 +32,11 @@
         <tbody>
             {% for reservation in reservations %}
             <tr>
-                <td>{{ reservation.reservationID }}</td>
+                <td>
+                    <a href="{{ url_for('show_reservation', reservation_id=reservation.reservationID) }}">
+                        {{ reservation.reservationID }}
+                    </a>
+                </td>
                 <td>{{ reservation.guestName }}</td>
                 <td>{{ reservation.roomNumber }}</td>
                 <td>{{ reservation.roomType }}</td>

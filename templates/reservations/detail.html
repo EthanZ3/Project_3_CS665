@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Reservation #{{ reservation.reservationID }}</h1>
+        <p class="text-muted">Detailed reservation information.</p>
+    </div>
+
+    <a 
+        href="{{ url_for('edit_reservation', reservation_id=reservation.reservationID) }}" 
+        class="btn btn-primary"
+    >
+        Edit Reservation
+    </a>
+</div>
+
+<div class="content-card">
+    <table class="table admin-table">
+        <tr>
+            <th>Guest</th>
+            <td>{{ reservation.guestName }}</td>
+        </tr>
+        <tr>
+            <th>Room</th>
+            <td>Room {{ reservation.roomNumber }}</td>
+        </tr>
+        <tr>
+            <th>Room Type</th>
+            <td>{{ reservation.roomType }}</td>
+        </tr>
+        <tr>
+            <th>Base Price</th>
+            <td>${{ "%.2f"|format(reservation.basePrice or 0) }}</td>
+        </tr>
+        <tr>
+            <th>Employee</th>
+            <td>{{ reservation.employeeName or "N/A" }}</td>
+        </tr>
+        <tr>
+            <th>Check-In</th>
+            <td>{{ reservation.checkInDate }}</td>
+        </tr>
+        <tr>
+            <th>Check-Out</th>
+            <td>{{ reservation.checkOutDate }}</td>
+        </tr>
+        <tr>
+            <th>Number of Nights</th>
+            <td>{{ reservation.numberOfNights }}</td>
+        </tr>
+        <tr>
+            <th>Final Cost</th>
+            <td>${{ "%.2f"|format(reservation.finalCost or 0) }}</td>
+        </tr>
+        <tr>
+            <th>Created</th>
+            <td>{{ reservation.createdAt }}</td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}
