@@ -27,3 +27,9 @@
 - Below is a basic README.MD i have provided, please make it look professional and include anything that I may have forgotten in the setup process
 - Wrote a detailed and professional README including the project features that were included in the project pdf and where they can be found in the project
 - Verified the information inside the README that the ai provided and edited it to be more in line with a readable style
+
+6:
+- chatgpt
+- Given all my project details and that is is running correctly when launched. Please do a final check of everything that I have done so far compared to the requirments of the project 3 pdf and let me know if it is ready for submission
+- Pointed out a few things in terms of wording but overall the project looked good
+- Made no changes, besdies doing a final look through myself.
